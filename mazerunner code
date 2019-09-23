@@ -1,0 +1,67 @@
+
+ //left wheels
+ int LmotorPort=10;
+ int LdirPort= 8;
+ //right wheels
+ int RmotorPort = 9;
+ int RdirPort = 7;
+ int i=0;
+
+
+ void setup() {
+  
+//motors
+pinMode(LmotorPort, OUTPUT);
+pinMode(LdirPort, OUTPUT);
+pinMode(RmotorPort, OUTPUT);
+pinMode(RdirPort, OUTPUT);
+Serial.begin(9600);
+
+}
+
+void loop() {  
+
+moveforward(200,200);
+delay (2500);
+Stop();
+delay (500);
+moveright(200);
+delay (2000);
+Stop();
+delay (500);
+moveforward(200,200);
+delay(1000);
+Stop();
+delay(500);
+moveleft(200);
+delay(1500);
+Stop();
+delay(500);
+}
+
+void moveforward(int LSpeed, int RSpeed){
+analogWrite(LmotorPort, LSpeed);
+digitalWrite(LdirPort, LOW);
+analogWrite(RmotorPort, RSpeed);
+digitalWrite(RdirPort, LOW);
+}
+
+void moveleft(int Speed){
+analogWrite(LmotorPort, Speed);
+digitalWrite(LdirPort, HIGH);
+analogWrite(RmotorPort, Speed);
+digitalWrite(RdirPort, LOW);
+}
+
+void moveright(int Speed){
+analogWrite(LmotorPort, Speed);
+digitalWrite(LdirPort, LOW);
+analogWrite(RmotorPort, Speed);
+digitalWrite(RdirPort, HIGH);
+}
+void Stop(){
+analogWrite(LmotorPort, 0);
+digitalWrite(LdirPort, LOW);
+analogWrite(RmotorPort, 0);
+digitalWrite(RdirPort, LOW);
+}
